@@ -37,15 +37,14 @@ builder.Services.AddCors(options =>
 builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
-if (app.Environment.IsDevelopment())
+
+app.MapOpenApi();
+app.MapScalarApiReference("/docs", options =>
 {
-    app.MapOpenApi();
-    app.MapScalarApiReference("/docs", options =>
-    {
-        options.Title = "LMS Video API";
-        options.Theme = ScalarTheme.Laserwave;
-    });
-}
+    options.Title = "LMS Video API";
+    options.Theme = ScalarTheme.Laserwave;
+});
+
 
 app.UseCors();
 
