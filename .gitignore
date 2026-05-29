@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/src/VideoService.Api/appsettings.json
+/src/VideoService.Api/appsettings.Development.json
+/testvideo
