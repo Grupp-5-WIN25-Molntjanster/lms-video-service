@@ -18,9 +18,6 @@ public class VideoRepository(VideoDbContext db) : IVideoRepository
     public async Task<Video?> GetByCourseAndLessonAsync(int courseId, int lessonId, CancellationToken ct = default)
         => await db.Videos.FirstOrDefaultAsync(v => v.CourseId == courseId && v.LessonId == lessonId, ct);
 
-    public async Task<List<Video>> GetByCourseIdAsync(int courseId, CancellationToken ct = default)
-        => await db.Videos.Where(v => v.CourseId == courseId).ToListAsync(ct);
-
     public async Task<Video> AddAsync(Video video, CancellationToken ct = default)
     {
         db.Videos.Add(video);
