@@ -15,9 +15,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Contexts\" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Repositories\" />
   </ItemGroup>
 </Project>
