@@ -8,9 +8,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="DTOs\" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Services\" />
   </ItemGroup>
 </Project>
