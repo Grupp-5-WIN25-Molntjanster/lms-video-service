@@ -26,13 +26,19 @@ public class VideoManager(IVideoRepository repo, IBlobStorageService blob)
     public async Task<VideoResult> UploadAsync(VideoUploadRequest request, Stream fileStream, string contentType, CancellationToken ct = default)
     {
         var blobPath = $"{request.CourseId}/{Guid.NewGuid():N}.mp4";
-        var url = await blob.UploadAsync(blobPath, fileStream, contentType, ct);
+        // Fix content type before saving to DB
+        var fixedContentType = contentType switch
+        {
+            "application/octet-stream" when blobPath.EndsWith(".mp4") => "video/mp4",
+            _ => contentType
+        };
+        var url = await blob.UploadAsync(blobPath, fileStream, fixedContentType, ct);
         var video = new Video
         {
             Title = request.Title,
             Description = request.Description,
             BlobPath = blobPath,
-            ContentType = contentType,
+            ContentType = fixedContentType,
             FileSizeBytes = fileStream.Length,
             CourseId = request.CourseId,
             LessonId = request.LessonId,
